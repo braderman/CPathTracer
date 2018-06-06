@@ -13,6 +13,10 @@ add_definitions(
 
 add_executable(path_tracer
 	main.c
+	vec3.h
+	vec3.c
 )
+
+set_property(TARGET path_tracer PROPERTY C_STANDARD 99)
 
 target_link_libraries(path_tracer libfreeimage.a)

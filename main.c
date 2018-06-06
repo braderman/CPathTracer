@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <freeimage.h>
+#include "vec3.h"
 
 int main(int argc, char* argv[])
 {
@@ -12,6 +13,7 @@ int main(int argc, char* argv[])
 	unsigned int pitch  = FreeImage_GetPitch(bmp);
 	BYTE *pRowPtr = FreeImage_GetBits(bmp);
 	BYTE *pColPtr;
+	Vec3 color;
 
 	for(int y = 0; y < ny; ++y)
 	{
@@ -19,13 +21,13 @@ int main(int argc, char* argv[])
 
 		for(int x = 0; x < nx; ++x)
 		{
-			float r = (float)x / (float)nx;
-			float g = (float)y / (float)ny;
-			float b = 0.2f;
+			color.r = (float)x / (float)nx;
+			color.g = (float)y / (float)ny;
+			color.b = 0.2f;
 			
-			int ir = (int)(r * 255.99);
-			int ig = (int)(g * 255.99);
-			int ib = (int)(b * 255.99);
+			int ir = (int)(color.r * 255.99);
+			int ig = (int)(color.g * 255.99);
+			int ib = (int)(color.b * 255.99);
 
 			pColPtr[FI_RGBA_RED]   = ir;
       		pColPtr[FI_RGBA_GREEN] = ig;
