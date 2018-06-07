@@ -1,4 +1,10 @@
+#pragma once
+
 #include <math.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 union Vec3_
 {
@@ -8,8 +14,6 @@ union Vec3_
 
 typedef union Vec3_ Vec3;
 
-Vec3 vec3_create(float x, float y, float z);
-Vec3 vec3_create_empty();
 Vec3 vec3_neg(const Vec3* pVec);
 void vec3_neg_mod(Vec3* pVec);
 void vec3_add_vec_mod(Vec3* pThis, const Vec3* pVec);
@@ -31,3 +35,8 @@ Vec3 vec3_unit_vector(const Vec3 *pVec);
 float vec3_dot(const Vec3* pVec1, const Vec3* pVec2);
 Vec3 vec3_cross(const Vec3* pVec1, const Vec3* pVec2);
 void vec3_set(Vec3* pThis, float x, float y, float z);
+void vec3_clear(Vec3* pThis);
+
+#ifdef __cplusplus
+}
+#endif

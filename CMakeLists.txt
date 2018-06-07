@@ -15,6 +15,8 @@ add_executable(path_tracer
 	main.c
 	vec3.h
 	vec3.c
+	ray.h
+	ray.c
 )
 
 set_property(TARGET path_tracer PROPERTY C_STANDARD 99)

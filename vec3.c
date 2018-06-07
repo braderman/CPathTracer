@@ -1,22 +1,6 @@
 #include "vec3.h"
 #include <string.h>
 
-Vec3 vec3_create(float x, float y, float z)
-{
-	Vec3 vec;
-	vec.x = x;
-	vec.y = y;
-	vec.z = z;
-	return vec;
-}
-
-Vec3 vec3_create_empty()
-{
-	Vec3 vec;
-	memset(&vec, 0, sizeof(Vec3));
-	return vec;
-}
-
 void vec3_add_vec_mod(Vec3* pThis, const Vec3* pVec)
 {
 	pThis->x += pVec->x;
@@ -170,4 +154,9 @@ void vec3_set(Vec3* pThis, float x, float y, float z)
 	pThis->x = x;
 	pThis->y = y;
 	pThis->z = z;
+}
+
+void vec3_clear(Vec3* pThis)
+{
+	memset(pThis, 0, sizeof(Vec3));
 }
