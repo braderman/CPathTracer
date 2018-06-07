@@ -1,7 +1,7 @@
 #include "vec3.h"
 #include <string.h>
 
-Vec3 vec3_make(float x, float y, float z)
+Vec3 vec3_create(float x, float y, float z)
 {
 	Vec3 vec;
 	vec.x = x;
@@ -10,7 +10,7 @@ Vec3 vec3_make(float x, float y, float z)
 	return vec;
 }
 
-Vec3 vec3_make_empty()
+Vec3 vec3_create_empty()
 {
 	Vec3 vec;
 	memset(&vec, 0, sizeof(Vec3));
@@ -125,12 +125,12 @@ float vec3_squared_length(const Vec3* pThis)
 	return (pThis->x * pThis->x) + (pThis->y * pThis->y) + (pThis->z * pThis->z);
 }
 
-void vec3_make_unit_vector_mod(Vec3* pThis)
+void vec3_make_unit_vector(Vec3* pThis)
 {
 	vec3_div_scalar_mod(pThis, vec3_length(pThis));
 }
 
-Vec3 vec3_make_unit_vector(const Vec3 *pVec)
+Vec3 vec3_unit_vector(const Vec3 *pVec)
 {
 	return vec3_div_scalar(pVec, vec3_length(pVec));
 }
@@ -147,4 +147,27 @@ Vec3 vec3_cross(const Vec3* pVec1, const Vec3* pVec2)
 	retVal.y = -((pVec1->x * pVec2->z) - (pVec1->z * pVec2->x));
 	retVal.z = (pVec1->x * pVec2->y) - (pVec1->y * pVec2->x);
 	return retVal;
+}
+
+Vec3 vec3_neg(const Vec3* pVec)
+{
+	Vec3 retVal;
+	retVal.x = -pVec->x;
+	retVal.y = -pVec->y;
+	retVal.z = -pVec->z;
+	return retVal;
+}
+
+void vec3_neg_mod(Vec3* pVec)
+{
+	pVec->x = -pVec->x;
+	pVec->y = -pVec->y;
+	pVec->z = -pVec->z;
+}
+
+void vec3_set(Vec3* pThis, float x, float y, float z)
+{
+	pThis->x = x;
+	pThis->y = y;
+	pThis->z = z;
 }

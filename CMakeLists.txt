@@ -20,3 +20,6 @@ add_executable(path_tracer
 set_property(TARGET path_tracer PROPERTY C_STANDARD 99)
 
 target_link_libraries(path_tracer libfreeimage.a)
+
+add_subdirectory(googletest-1.8.0)
+add_subdirectory(tests)
