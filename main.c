@@ -3,8 +3,29 @@
 #include "vec3.h"
 #include "ray.h"
 
+typedef char bool;
+
+bool hit_sphere(const Vec3* center, float radius, const Ray* r)
+{
+	Vec3 oc = r->origin;
+	vec3_sub_vec_mod(&oc, center);
+	float a = vec3_dot(&r->direction, &r->direction);
+	float b = 2.0f * vec3_dot(&oc, &r->direction);
+	float c = vec3_dot(&oc, &oc) - radius * radius;
+	float discriminant = b * b - 4 * a * c;
+	return discriminant > 0;
+}
+
 void get_color(const Ray *r, Vec3* pColor)
 {
+	Vec3 center;
+	vec3_set(&center, 0, 0, -1);
+	if (hit_sphere(&center, 0.5f, r))
+	{
+		vec3_set(pColor, 1, 0, 0);
+		return;
+	}
+
 	Vec3 unit_direction = vec3_unit_vector(&r->direction);
 	float t = 0.5f * (unit_direction.y + 1.0f);
 	vec3_set(pColor, 1, 1, 1);
@@ -28,6 +49,7 @@ void get_ray_direction(float u, float v, const Vec3* pLower_left_corner, const V
 	vec3_add_vec_mod(pDirection, &horz);
 	vec3_add_vec_mod(pDirection, &vert);
 }
+
 
 int main(int argc, char* argv[])
 {
