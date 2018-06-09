@@ -13,10 +13,17 @@ add_definitions(
 
 add_executable(path_tracer
 	main.c
+	common.h
 	vec3.h
 	vec3.c
 	ray.h
 	ray.c
+	hitable.h
+	hitable.c
+	sphere.h
+	sphere.c
+	hitable_list.h
+	hitable_list.c
 )
 
 set_property(TARGET path_tracer PROPERTY C_STANDARD 99)

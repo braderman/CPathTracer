@@ -6,12 +6,10 @@
 extern "C" {
 #endif
 
-struct Ray_
+typedef struct
 {
 	Vec3 origin, direction;
-};
-
-typedef struct Ray_ Ray;
+} Ray;
 
 void ray_clear(Ray* pThis);
 void ray_set(Ray* pThis, const Vec3* origin, const Vec3* direction);

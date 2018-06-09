@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"hit",
+				"hitable_list_create"
+			],
+			[
+				"Hit",
+				"Hitable"
+			],
+			[
+				"p",
+				"pHitable"
+			],
+			[
 				"include",
 				"include_directories\tcommand"
 			],
@@ -16,16 +28,8 @@
 				"randomInUnitSphere"
 			],
 			[
-				"hit",
-				"hitAnything"
-			],
-			[
 				"_c",
 				"_createHitRecord"
-			],
-			[
-				"Hit",
-				"HitRecord"
 			],
 			[
 				"M",
@@ -58,10 +62,6 @@
 			[
 				"data",
 				"dataset"
-			],
-			[
-				"p",
-				"percentage"
 			],
 			[
 				"re",
@@ -170,19 +170,28 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/brian/Code/CPathTracer",
-		"/Users/brian/Code/CPathTracer/tests"
+		"/Users/brian/Code/CPathTracer"
 	],
 	"file_history":
 	[
+		"/Users/brian/Code/CPathTracer/main.c",
+		"/Users/brian/Code/CPathTracer/sphere.h",
+		"/Users/brian/Code/CPathTracer/hitable.h",
+		"/Users/brian/Code/CPathTracer/hitable.c",
+		"/Users/brian/Code/CPathTracer/CMakeLists.txt",
+		"/Users/brian/Code/CPathTracer/sphere.c",
+		"/Users/brian/Code/CPathTracer/hitable_list.h",
+		"/Users/brian/Code/CPathTracer/hitable_list.c",
+		"/Users/brian/Code/CPathTracer/common.h",
 		"/Users/brian/Code/CPathTracer/vec3.h",
-		"/Users/brian/Code/CPathTracer/vec3.c",
+		"/Users/brian/Code/CPathTracer/ray.h",
+		"/Users/brian/Code/CPathTracer/ray.c",
+		"/Users/brian/Code/CPathTracer/tests/ray_tests.cpp",
 		"/Users/brian/Code/CPathTracer/tests/vec3_tests.cpp",
+		"/Users/brian/Code/CPathTracer/tests/CMakeLists.txt",
+		"/Users/brian/Code/CPathTracer/vec3.c",
 		"/Users/brian/Code/PathTracer/test/test_vec3.py",
 		"/Users/brian/Code/CPathTracer/googletest-1.8.0/googletest/include/gtest/gtest.h",
-		"/Users/brian/Code/CPathTracer/tests/CMakeLists.txt",
-		"/Users/brian/Code/CPathTracer/CMakeLists.txt",
-		"/Users/brian/Code/CPathTracer/main.c",
 		"/Users/brian/Code/CPathTracer/.git/vec3.c",
 		"/Users/brian/Code/CPathTracer/.git/vec3.h",
 		"/Users/brian/Code/CPathTracer/.git/COMMIT_EDITMSG",
@@ -292,21 +301,11 @@
 		"/Users/brian/Downloads/fltk-1.3.3/CMake/UseFLTK.cmake.in",
 		"/Users/brian/Downloads/moai-dev/samples/vector-svg/main.lua",
 		"/Users/brian/Downloads/moai-dev/build/build-osx/CMakeFiles/CMakeError.log",
-		"/Users/brian/Downloads/moai-dev-develop/appveyor.yml",
-		"/Users/brian/Downloads/moai-dev-develop/circle.yml",
-		"/Users/brian/Code/OpenCV/display_image/CMakeLists.txt",
-		"/Users/brian/Code/OpenCV/display_image/display_image.cpp",
-		"/Users/brian/Temp/hocr",
-		"/Users/brian/Temp/out.txt",
-		"/Users/brian/Documents/Resume/LaTeX/bettis_cover.tex",
-		"/Users/brian/Downloads/cover_letter_3/cover_letter_3.tex",
-		"/Users/brian/Downloads/nrec_cover.txt",
-		"/Users/brian/Downloads/fltk-1.3.3/test/cube.cxx",
-		"/Users/brian/Downloads/MLP FiM Song List.txt"
+		"/Users/brian/Downloads/moai-dev-develop/appveyor.yml"
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
@@ -320,6 +319,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"origin",
 			"ASSERT_EQ",
 			"vec3_make"
 		],
@@ -389,7 +389,7 @@
 	"project": "cpathtracer.sublime-project",
 	"replace":
 	{
-		"height": 70.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":

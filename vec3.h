@@ -6,13 +6,11 @@
 extern "C" {
 #endif
 
-union Vec3_
+typedef union 
 {
 	struct { float x, y, z;	};
 	struct { float r, g, b; };
-};
-
-typedef union Vec3_ Vec3;
+} Vec3;
 
 Vec3 vec3_neg(const Vec3* pVec);
 void vec3_neg_mod(Vec3* pVec);
