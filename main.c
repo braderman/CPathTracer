@@ -7,6 +7,7 @@
 #include "common.h"
 #include "hitable_list.h"
 #include "sphere.h"
+#include "camera.h"
 
 void get_color(const Ray *r, Hitable *world, Vec3* pColor)
 {
@@ -50,6 +51,7 @@ int main(int argc, char* argv[])
 
 	int nx = 200;
 	int ny = 100;
+	int ns = 100;
 
 	FIBITMAP* bmp = FreeImage_Allocate(nx, ny, 24, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
 	unsigned int pitch  = FreeImage_GetPitch(bmp);
@@ -67,7 +69,10 @@ int main(int argc, char* argv[])
 	world.list[0] = sphere_create(0, 0, -1, 0.5f);
 	world.list[1] = sphere_create(0, -100.5, -1, 100);
 
-	for(int y = 0; y < ny; ++y)
+	Camera cam;
+	camera_init(&cam);
+
+	for(int y = ny-1; y >= 0; --y)
 	{
 		pColPtr = pRowPtr;
 
@@ -76,6 +81,7 @@ int main(int argc, char* argv[])
 			float u = (float)x / (float)nx;
 			float v = (float)y / (float)ny;
 
+			camera_get_ray(&cam, u, v, &r);
 			get_ray_direction(u, v, &lower_left_corner, &horizontal, &vertical, &r.direction);
 			get_color(&r, (Hitable*)&world, &color);
 

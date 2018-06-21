@@ -24,6 +24,8 @@ add_executable(path_tracer
 	sphere.c
 	hitable_list.h
 	hitable_list.c
+	camera.h
+	camera.c
 )
 
 set_property(TARGET path_tracer PROPERTY C_STANDARD 99)
