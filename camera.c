@@ -12,9 +12,9 @@ void camera_get_ray(const Camera *pThis, float u, float v, Ray *pRay)
 {
 	pRay->origin = pThis->origin;
 	Vec3 uhorz = pThis->horizontal;
-	ve3_mul_scalar_mod(&uhorz, u);
+	vec3_mul_scalar_mod(&uhorz, u);
 	Vec3 vvert = pThis->vertical;
-	ve3_mul_scalar_mod(&vvert, v);
+	vec3_mul_scalar_mod(&vvert, v);
 	pRay->direction = pThis->lower_left_corner;
 	vec3_add_vec_mod(&pRay->direction, &uhorz);
 	vec3_add_vec_mod(&pRay->direction, &vvert);

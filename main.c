@@ -32,18 +32,6 @@ void get_color(const Ray *r, Hitable *world, Vec3* pColor)
 	}
 }
 
-void get_ray_direction(float u, float v, const Vec3* pLower_left_corner, const Vec3* pHorizontal, const Vec3* pVertical, Vec3* pDirection)
-{
-	Vec3 horz = *pHorizontal;
-	vec3_mul_scalar_mod(&horz, u);
-
-	Vec3 vert = *pVertical;
-	vec3_mul_scalar_mod(&vert, v);
-
-	*pDirection = *pLower_left_corner;
-	vec3_add_vec_mod(pDirection, &horz);
-	vec3_add_vec_mod(pDirection, &vert);
-}
 
 int main(int argc, char* argv[])
 {
@@ -57,11 +45,7 @@ int main(int argc, char* argv[])
 	unsigned int pitch  = FreeImage_GetPitch(bmp);
 	BYTE *pRowPtr = FreeImage_GetBits(bmp);
 	BYTE *pColPtr;
-	Vec3 horizontal, vertical, lower_left_corner, color;
-
-	vec3_set(&lower_left_corner, -2, -1, -1);
-	vec3_set(&horizontal, 4, 0, 0);
-	vec3_set(&vertical, 0, 2, 0);
+	Vec3 pixColor, rayColor;
 
 	Ray r;
 	ray_clear(&r);
@@ -72,22 +56,28 @@ int main(int argc, char* argv[])
 	Camera cam;
 	camera_init(&cam);
 
-	for(int y = ny-1; y >= 0; --y)
+	for(int y = 0; y < ny; ++y)
 	{
 		pColPtr = pRowPtr;
 
 		for(int x = 0; x < nx; ++x)
 		{
-			float u = (float)x / (float)nx;
-			float v = (float)y / (float)ny;
+			vec3_clear(&pixColor);
 
-			camera_get_ray(&cam, u, v, &r);
-			get_ray_direction(u, v, &lower_left_corner, &horizontal, &vertical, &r.direction);
-			get_color(&r, (Hitable*)&world, &color);
+			for(int s = 0;s < ns;++s)
+			{
+				float u = (float)(x + drand48()) / (float)nx;
+				float v = (float)(y+ drand48()) / (float)ny;
+				camera_get_ray(&cam, u, v, &r);
+				get_color(&r, (Hitable*)&world, &rayColor);
+				vec3_add_vec_mod(&pixColor, &rayColor);
+			}
 
-			int ir = (int)(color.r * 255.99);
-			int ig = (int)(color.g * 255.99);
-			int ib = (int)(color.b * 255.99);
+			vec3_div_scalar_mod(&pixColor, ns);
+
+			int ir = (int)(pixColor.r * 255.99);
+			int ig = (int)(pixColor.g * 255.99);
+			int ib = (int)(pixColor.b * 255.99);
 
 			pColPtr[FI_RGBA_RED]   = ir;
       		pColPtr[FI_RGBA_GREEN] = ig;
