@@ -9,12 +9,33 @@
 #include "sphere.h"
 #include "camera.h"
 
+void random_in_unit_sphere(Vec3* p)
+{
+	Vec3 one;
+
+	vec3_set(&one, 1, 1, 1);
+
+	do 
+	{
+		vec3_set(p, drand48(), drand48(), drand48());
+		vec3_mul_scalar_mod(p, 2.0f);
+		vec3_sub_vec_mod(p, &one);
+	} while (vec3_squared_length(p) >= 1.0f);
+}
+
 void get_color(const Ray *r, Hitable *world, Vec3* pColor)
 {
 	HitRecord rec;
-	if (hitable_hit(world, r, 0.0, MAXFLOAT, &rec))
+	Vec3 target;
+
+	if (hitable_hit(world, r, 0.001f, MAXFLOAT, &rec))
 	{
-		vec3_set(pColor, rec.normal.x + 1, rec.normal.y + 1, rec.normal.z + 1);
+		random_in_unit_sphere(&target);
+		vec3_add_vec_mod(&target, &rec.normal);
+
+		Ray r1;
+		ray_set(&r1, &rec.p, &target);
+		get_color(&r1, world, pColor);
 		vec3_mul_scalar_mod(pColor, 0.5f);
 		return;
 	}
@@ -74,6 +95,9 @@ int main(int argc, char* argv[])
 			}
 
 			vec3_div_scalar_mod(&pixColor, ns);
+			pixColor.x = sqrt(pixColor.x);
+			pixColor.y = sqrt(pixColor.y);
+			pixColor.z = sqrt(pixColor.z);
 
 			int ir = (int)(pixColor.r * 255.99);
 			int ig = (int)(pixColor.g * 255.99);
